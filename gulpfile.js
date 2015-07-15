@@ -10,10 +10,10 @@ gulp.task("default", ["build-dev", "serve"]);
 
 gulp.task("build-dev", ["webpack:build-dev"], function() {
   gulp.watch(["app/**/*"], function() {
-    gulp.run(['build-and-test']);
+    gulp.run(['jasmine']);
     gulp.run(['static']);
   });
-  gulp.watch(["test/**/*"], ["build-and-test"]);
+  gulp.watch(["test/**/*"], ['jasmine']);
 });
 
 gulp.task("serve", function() {
@@ -47,11 +47,7 @@ gulp.task('static', function() {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('jasmine', function () {
+gulp.task('jasmine', ['webpack:build-dev'], function () {
     return gulp.src('test/**/*')
         .pipe(jasmine());
 });
-
-gulp.task('build-and-test', ['webpack:build-dev'], function() {
-  gulp.run('jasmine');
-})
