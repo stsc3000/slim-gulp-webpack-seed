@@ -1,4 +1,4 @@
-# Slim Gulp Webpack Seed
+# Small Gulp Webpack Seed
 
 This is a WIP gulp seed for using Gulp, Webpack and Jasmine in a dev
 environment.
