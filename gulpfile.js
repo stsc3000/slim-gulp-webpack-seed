@@ -13,7 +13,9 @@ gulp.task("build-dev", ["webpack:build-dev"], function() {
     gulp.run(['jasmine']);
     gulp.run(['static']);
   });
-  gulp.watch(["test/**/*"], ['jasmine']);
+  gulp.watch(["test/**/*"], function() {
+    gulp.run(['jasmine']);
+  });
 });
 
 gulp.task("serve", function() {

@@ -1,1 +1,2 @@
-alert('asd');
+var what = require('./what');
+alert(what);
