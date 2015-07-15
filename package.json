@@ -1,0 +1,11 @@
+{
+  "name": "try-webpack",
+  "version": "0.0.0",
+  "dependencies": {
+    "gulp-util": "~2.2.9",
+    "gulp": "~3.3.0",
+    "grunt-webpack": "~1.0.3",
+    "webpack": "~1.0.0-beta6",
+    "gulp-connect": "2.2.0"
+  }
+}
