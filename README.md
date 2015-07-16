@@ -7,5 +7,5 @@ environment.
 
 ```bash
 npm install
-gulp # start dev server on port 8080
+gulp # start dev server on port 8080, tests on port 8888
 ```
