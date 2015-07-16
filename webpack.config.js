@@ -1,5 +1,6 @@
 var path = require("path");
 var webpack = require("webpack");
+
 module.exports = {
   cache: true,
   debug: true,
@@ -24,5 +25,8 @@ module.exports = {
       // Bind version of jquery
       jquery: "jquery-2.0.3",
     }
+  },
+  node: {
+    fs: "empty"
   }
 };

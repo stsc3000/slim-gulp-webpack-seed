@@ -4,13 +4,14 @@ var webpack = require("webpack");
 var WebpackDevServer = require("webpack-dev-server");
 var webpackConfig = require("./webpack.config.js");
 var connect = require("gulp-connect");
-var jasmine = require("gulp-jasmine");
+var jasmineBrowser = require('gulp-jasmine-browser');
+var webpackStream = require('webpack-stream');
 
 gulp.task("default", ["build-dev", "serve"]);
 
-gulp.task("build-dev", ["webpack:build-dev"], function() {
+gulp.task("build-dev", ["webpack:build-dev", "static"], function() {
+  gulp.run(['jasmine']);
   gulp.watch(["app/**/*"], function() {
-    gulp.run(['jasmine']);
     gulp.run(['static']);
   });
   gulp.watch(["test/**/*"], function() {
@@ -49,7 +50,9 @@ gulp.task('static', function() {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('jasmine', ['webpack:build-dev'], function () {
-    return gulp.src('test/**/*')
-        .pipe(jasmine());
+gulp.task('jasmine', function() {
+  return gulp.src(['test/**/*.js'])
+    .pipe(webpackStream({watch: true, output: {filename: 'spec.js'}}))
+    .pipe(jasmineBrowser.specRunner())
+    .pipe(jasmineBrowser.server());
 });
